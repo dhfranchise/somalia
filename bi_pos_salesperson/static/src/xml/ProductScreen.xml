@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="SalesPerson" owl="1">
+        <div class="control-button" t-on-click="selectCashier()">
+            <i class="fa fa-user"></i>
+            <span></span>
+            <span>
+                <t t-if="env.pos.get_order().get_salesperson()">
+                    <t t-esc="env.pos.get_order().get_salesperson().name" />
+                </t>
+                <t t-if="!env.pos.get_order().get_salesperson()">
+                    Salesperson
+                </t>
+            </span>
+        </div>
+    </t>
+</templates>

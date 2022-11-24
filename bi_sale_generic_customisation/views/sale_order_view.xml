@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <record id="view_order_tree_inherit_sale_generic" model="ir.ui.view">
+        <field name="name">view.order.tree.inherit.sale.generic</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='amount_total']" position="after">
+                <field name="invoiced_amount" widget='monetary' options="{'currency_field': 'currency_id'}" readonly="True"/>
+                <field name="balance_to_pay" widget='monetary' options="{'currency_field': 'currency_id'}" readonly="True"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_order_form_inherit_sale_invoice" model="ir.ui.view">
+        <field name="name">sale.order.form.salesinvoice.module</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='note']" position="after">
+                <group>
+                    <group>
+                        <field name="currency_id" invisible="1"/>
+                        <field name="invoiced_amount" widget='monetary' options="{'currency_field': 'currency_id'}" readonly="True" invisible="1"/>
+                        <field name="balance_to_pay" widget='monetary' options="{'currency_field': 'currency_id'}" readonly="True" invisible="1"/>
+                    </group>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

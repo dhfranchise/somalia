@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+    <record id="view_budget_category_tree" model="ir.ui.view">
+            <field name="name">budget.category.tree</field>
+            <field name="model">bi.budget.category</field>
+            <field name="arch" type="xml">
+                <tree string="Budget Category">
+                    <field name="name"/>
+                    <field name="code" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_budget_category_form" model="ir.ui.view">
+            <field name="name">budget.category.form</field>
+            <field name="model">bi.budget.category</field>
+            <field name="arch" type="xml">
+                <form string="Budget Category">
+                    <sheet>
+                    <group>
+                        <group>
+                            <field name="name" />
+                            <field name="code" />
+                        </group>
+                    </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="bi_budget_category_action" model="ir.actions.act_window">
+            <field name="name">Budget Category</field>
+            <field name="res_model">bi.budget.category</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+            <field name="view_id" eval="False"/>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+
+              </p>
+              <p>
+                Budget Category Form
+              </p>
+            </field>
+        </record>
+
+
+        <menuitem
+            id="bi_menu_budget_category"
+            name="Budget Category"
+            action = "bi_budget_category_action"
+            parent="stock.menu_stock_config_settings"
+            sequence="1"
+            />
+    </data>
+</odoo>

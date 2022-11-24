@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+        <record id="view_order_form_inheri_new" model="ir.ui.view">
+            <field name="name">Sale Order </field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook/page[@name='other_information']" position="after">
+                    <page name="terms_conditions" string="Terms and Conditions">
+                        <group>
+                            <group>
+                                <field name="terms"/>
+                                <field name="price_quoted"/>
+                                <field name="delivery"/>
+                            </group>
+                            <group>
+                                <field name="quote"/>
+                                <field name="warranty"/>
+                            </group>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

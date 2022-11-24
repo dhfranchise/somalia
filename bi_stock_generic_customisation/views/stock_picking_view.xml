@@ -1,0 +1,23 @@
+<odoo>
+    <record id="vpicktree_inherit_generic_customisation" model="ir.ui.view">
+        <field name="name">vpicktree.inherit.generic.customisation</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.vpicktree"/>
+        <field name="arch" type="xml">
+            <field name="origin" position="after">
+                <field name="total_value"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_picking_form_inherit_generic_customisation" model="ir.ui.view">
+        <field name="name">view.picking.form.inherit.generic.customisation</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='move_ids_without_package']//tree//field[@name='product_uom']" position="after">
+                <field name="total_value" invisible="1"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

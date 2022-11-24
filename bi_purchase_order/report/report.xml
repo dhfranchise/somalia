@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <report id="purchase_order_pdf"
+            model="purchase.order"
+            string="Purchase Order"
+            report_type="qweb-pdf"
+            name="bi_purchase_order.bi_purchase_order_template"
+            paperformat="bi_purchase_order.purchase_paperformat"
+    />
+</odoo>

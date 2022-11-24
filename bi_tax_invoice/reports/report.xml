@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <report id="tax_invoice_pdf"
+            model="account.move"
+            string="Tax Invoice"
+            report_type="qweb-pdf"
+            name="bi_tax_invoice.bi_tax_invoice_template"
+            paperformat="bi_tax_invoice.invoice_paperformat"
+    />
+</odoo>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="pos_config_view_form_inherit_pos_restrictions" model="ir.ui.view">
+        <field name="name">pos.config.view.form.inherit.pos.restrictions</field>
+        <field name="model">pos.config</field>
+        <field name="inherit_id" ref="point_of_sale.pos_config_view_form"/>
+        <field name="arch" type="xml">
+            <div id="posbox_reference" position="after">
+                <h2>POS Restrictions</h2>
+                <div class="row mt16 o_settings_container" id="pos_restrictions">
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_left_pane">
+                            <field name="restrict_line_discount"/>
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="restrict_line_discount"/>
+                            <div class="text-muted" id="discount_restriction">
+                               Restrict Discount on POS Lines
+                            </div>
+                            <div class="content-group mt16" attrs="{'invisible': [('restrict_line_discount', '=', False)]}">
+                                <div class="row mt16">
+                                    <label for="pw_allow_discount" class="col-lg-3 o_light_label"/>
+                                    <field name="pw_allow_discount" attrs="{'required': [('restrict_line_discount', '=', True)]}"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_left_pane">
+                            <field name="pos_deny_order"/>
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="pos_deny_order"/>
+                            <div class="text-muted" id="pos_deny_order">
+                                Deny POS Order
+                            </div>
+                            <div class="content-group mt16" attrs="{'invisible': [('pos_deny_order', '=', False)]}">
+                                <div class="row mt16">
+                                    <label for="pos_deny_qty" class="col-lg-3 o_light_label"/>
+                                    <field name="pos_deny_qty" attrs="{'required': [('pos_deny_order', '=', True)]}"/>
+                                </div>
+                            </div>
+                            <div class="content-group mt16" attrs="{'invisible': [('pos_deny_order', '=', False)]}">
+                                <div class="row mt16">
+                                    <label for="pw_allow_order" class="col-lg-3 o_light_label"/>
+                                    <field name="pw_allow_order" attrs="{'required': [('pos_deny_order', '=', True)]}"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </field>
+    </record>
+
+</odoo>

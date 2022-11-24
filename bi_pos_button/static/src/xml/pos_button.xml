@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template_one" xml:space="preserve">
+    <t t-name="PosNewButton" owl="1">
+        <span class="control-button">
+            <span>X Report</span>
+        </span>
+    </t>
+</templates>

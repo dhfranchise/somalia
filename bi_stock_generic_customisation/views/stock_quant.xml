@@ -1,0 +1,29 @@
+<odoo>
+    <record id="view_stock_quant_tree_inventory_editable_generic" model="ir.ui.view">
+        <field name="name">view.stock.quant.tree.inventory.editable.generic</field>
+        <field name="model">stock.quant</field>
+        <field name="inherit_id" ref="stock.view_stock_quant_tree_inventory_editable"/>
+        <field name="arch" type="xml">
+            <xpath expr="//tree/field[@name='product_categ_id']" position="after">
+                <field name="group_code_id" optional="show"/>
+                <field name="sub_group_code_id" optional="show"/>
+                <field name="brand_code_id" optional="show"/>
+                <field name="color_code_id" optional="show"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="quant_search_view_inherit_generic" model="ir.ui.view">
+        <field name="name">quant.search.view.inherit.generic</field>
+        <field name="model">stock.quant</field>
+        <field name="inherit_id" ref="stock.quant_search_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//search/group/filter[@name='locationgroup']" position="after">
+                <filter string="Group Code" name="group_code" context="{'group_by': 'group_code_id'}"/>
+                <filter string="Sub Group Code"  name="sub_group_code" context="{'group_by': 'sub_group_code_id'}"/>
+                <filter string="Brand Code"  name="brand_code" context="{'group_by': 'brand_code_id'}"/>
+                <filter string="Color Code"  name="color_code" context="{'group_by': 'color_code_id'}"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,30 @@
+{
+    "name": "Bi Product",
+    "version": "15.0.1.0.0",
+    "category": "Product",
+    "summary": "",
+    "description": """
+        add all the missing fields in product
+    """,
+    "author": "BassamInfotech",
+    "license": "OPL-1",
+    "depends": ["base", "product", "stock"],
+    "website": "https://www.bassaminfotech.in",
+    "data": [
+        "security/ir.model.access.csv",
+        "views/bi_product.xml",
+        "views/bi_budget_category.xml",
+        "views/bi_division_code.xml",
+        "views/bi_group_code.xml",
+        "views/bi_sub_group_code.xml",
+        "views/sub_category_one_code.xml",
+        "views/sub_category_two_code.xml",
+        "views/sub_category_three_code.xml",
+        "views/bi_size_code.xml",
+        "views/bi_color_code.xml",
+        "views/bi_brand.xml",
+        "views/bi_sub_sub_group_code.xml",
+    ],
+    "auto_install": False,
+    "installable": True,
+}

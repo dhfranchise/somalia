@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="DiscountSelectionPopup" owl="1">
+        <div role="dialog" class="modal-dialog discount_modal_dialog">
+            <div class="popup popup-text popup-lg product-configurator-popup discount_popup">
+                <header class="title">
+                    Discount
+                </header>
+                <div class="main-body touch-scrollable scrollable-y discount_main_table">
+                    <div class="discount_radio">
+                        <input type="radio" id="discount_fixed_radio" name="fixed_percen_discount_radio" checked="true" />
+                        <label for="discount_fixed_radio"> Fixed</label>
+                        <input type="radio" id="discount_percentage_radio" name="fixed_percen_discount_radio" />
+                        <label for="discount_percentage_radio"> Percentage</label>
+                    </div>
+                    <div class="discount_amount_div">
+                        <span class="discount_label">Value : </span>
+                        <input type="text" class="discount_value" />
+                    </div>
+                </div>
+                <footer class="footer discount_footer">
+                    <div class="button confirm" t-on-click="confirm">
+                        Confirm
+                    </div>
+                    <div class="button cancel" t-on-click="cancel">
+                        Cancel
+                    </div>
+                </footer>
+            </div>
+        </div>
+    </t>
+</templates>

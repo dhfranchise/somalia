@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_sub_sub_group_code_tree" model="ir.ui.view">
+            <field name="name">sub sub group.code.tree</field>
+            <field name="model">bi.sub.sub.group.code</field>
+            <field name="arch" type="xml">
+                <tree string="sub_group Code">
+                    <field name="name"/>
+                    <field name="code" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_sub_sub_group_code_form" model="ir.ui.view">
+            <field name="name">sub group.code.form</field>
+            <field name="model">bi.sub.sub.group.code</field>
+            <field name="arch" type="xml">
+                <form string="Sub Sub Group Code">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name" />
+                                <field name="code" />
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="bi_sub_sub_group_code_action" model="ir.actions.act_window">
+            <field name="name">Sub Group Code</field>
+            <field name="res_model">bi.sub.sub.group.code</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+            <field name="view_id" eval="False"/>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+
+              </p>
+              <p>
+                sub_group Code Form
+              </p>
+            </field>
+        </record>
+
+        <menuitem
+            id="bi_menu_sub_sub_group_code"
+            name="Sub Sub Group Code"
+            action = "bi_sub_sub_group_code_action"
+            parent="stock.menu_stock_config_settings"
+            sequence="2"
+            />
+    </data>
+</odoo>

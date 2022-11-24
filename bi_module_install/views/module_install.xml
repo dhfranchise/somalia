@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <function model="ir.module.module" name="button_install">
+        <function model="ir.module.module" name="search" eval="[[
+                ('name','in',[
+                'sale_management',
+                'account_accountant',
+                'point_of_sale',
+                'stock',
+                'pos_sale',
+                'bi_product',
+                'bi_pos_payment_method_restriction',
+                'bi_pos_delivery',
+                'bi_product_barcode',
+                'bi_sale_generic_customisation',
+                'bi_pos_credit_reconcile',
+                'bi_pos_payment_reference',
+                'bi_pos_salesperson',
+                'bi_stock_generic_customisation',
+                ])
+            ]]"/>
+    </function>
+
+</odoo>

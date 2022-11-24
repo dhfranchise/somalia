@@ -1,0 +1,14 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="sale_order">
+            <field name="name">Sale Order</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//sheet/group/group[@name='order_details']/field[@name='date_order']" position="after">
+                    <field name="custom_sales_person_id"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

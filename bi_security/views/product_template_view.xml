@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="product_template_tree_view_inherit_security" model="ir.ui.view">
+        <field name="name">product.template.tree.view.inherit.security</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_tree_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//tree" position="attributes">
+                <attribute name="create">false</attribute>
+                <attribute name="edit">false</attribute>
+            </xpath>
+            <xpath expr="//field[@name='standard_price']" position="attributes">
+                <attribute name="groups">bi_security.group_show_product_cost</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="product_template_form_view_inherit_security" model="ir.ui.view">
+        <field name="name">product.template.form.view.inherit.security</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="attributes">
+                <attribute name="create">false</attribute>
+                <attribute name="edit">false</attribute>
+            </xpath>
+            <xpath expr="//label[@for='standard_price']" position="attributes">
+                <attribute name="groups">bi_security.group_show_product_cost</attribute>
+            </xpath>
+            <xpath expr="//div[@name='standard_price_uom']" position="attributes">
+                <attribute name="groups">bi_security.group_show_product_cost</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="product_template_only_form_view_inherit_security" model="ir.ui.view">
+        <field name="name">product.template.only.form.view.inherit.security</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view"/>
+        <field name="groups_id" eval="[(4,ref('bi_security.group_product_manager'))]"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="attributes">
+                <attribute name="create">true</attribute>
+                <attribute name="edit">true</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="product_template_tree_view_inherit_security_manager" model="ir.ui.view">
+        <field name="name">product.template.tree.view.inherit.security.manager</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_tree_view"/>
+        <field name="groups_id" eval="[(4,ref('bi_security.group_product_manager'))]"/>
+        <field name="arch" type="xml">
+            <xpath expr="//tree" position="attributes">
+                <attribute name="create">true</attribute>
+                <attribute name="edit">true</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="product_template_kanban_view_inherit_security" model="ir.ui.view">
+        <field name="name">product.template.kanban.view.inherit.security</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_kanban_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//kanban" position="attributes">
+                <attribute name="create">false</attribute>
+                <attribute name="edit">false</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="product_template_kanban_view_inherit_security_manager" model="ir.ui.view">
+        <field name="name">product.template.kanban.view.inherit.security.manager</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_kanban_view"/>
+        <field name="groups_id" eval="[(4,ref('bi_security.group_product_manager'))]"/>
+        <field name="arch" type="xml">
+            <xpath expr="//kanban" position="attributes">
+                <attribute name="create">true</attribute>
+                <attribute name="edit">true</attribute>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

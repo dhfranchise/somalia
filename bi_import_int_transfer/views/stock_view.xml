@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- INVENTORY SIDE MENU -->
+    <menuitem id="import_int_transfer_menu" name="Import Internal Transfer" action="import_int_transfer_action" groups="bi_import_int_transfer.import_int_transfer_group" parent="stock.menu_stock_warehouse_mgmt" sequence="11" />
+</odoo>

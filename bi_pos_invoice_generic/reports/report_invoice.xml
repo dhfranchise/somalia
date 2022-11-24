@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_invoice_document" inherit_id="account.report_invoice_document">
+        <xpath expr="//div[@id='informations']" position="inside">
+            <div class="col-auto col-3 mw-100 mb-2" t-if="o.efg_no" name="efg_no">
+                <strong>EFG No:</strong>
+                <p class="m-0" t-field="o.efg_no"/>
+            </div>
+        </xpath>
+    </template>
+</odoo>

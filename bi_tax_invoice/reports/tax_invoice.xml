@@ -1,0 +1,577 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+        <template id="bi_tax_invoice_template">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                <div class="header">
+                    <div class="row">
+                        <div class="col-6" style="vertical-align:bottom;font-weight:bold;color:#17375e">
+                            <div style="text-align:left;padding-top:2px;font-size:20px">TAX INVOICE  TPIN: <t t-if="o.company_id.partner_id.vat">
+                                <span t-esc="o.company_id.partner_id.vat"/>
+                            </t></div>
+                              <br/>
+                            <t t-if="o.company_id.name">
+                                <span style="color:#17375e;font-weight:bold;" t-esc="o.company_id.name"/>
+                            </t><br/>
+                            <t t-if="o.company_id.street">
+                                <span style="color:#17375e;font-weight:bold;" t-esc="o.company_id.street"/>,
+                            </t>
+                            <t t-if="o.company_id.street2">
+                                <span style="color:#17375e;font-weight:bold;" t-esc="o.company_id.street2"/><br/>
+                            </t>
+                            <t t-if="o.session_id">
+                                <t t-if="o.session_id.config_id">
+                                    <span style="color:#17375e;font-weight:bold;" t-esc="o.session_id.config_id.name"/>
+                                </t>
+                            </t>
+                            <br/>
+                            <t t-if="o.session_id">
+                                <t t-if="o.session_id.config_id">
+                                    <span style="color:#17375e;font-weight:bold;" t-esc="o.session_id.config_id.email"/>
+                                </t>
+                            </t>
+                            <!-- <t t-if="o.company_id.state_id.name">
+                                <span style="color:#17375e;font-weight:bold;" t-esc="o.company_id.state_id.name"/><br/>
+                            </t>
+                            <t t-if="o.company_id.zip">
+                                <span style="color:#17375e;font-weight:bold;" t-esc="o.company_id.zip"/>,
+                            </t>
+                            <t t-if="o.company_id.country_id.name">
+                                <span style="color:#17375e;font-weight:bold;" t-esc="o.company_id.country_id.name"/><br/>
+                            </t>
+                            <t t-if="o.company_id.email">
+                                <span style="color:#17375e;font-weight:bold;"> Email:<span t-esc="o.company_id.email"/></span>
+                            </t> -->
+                        </div>
+                        <div class="col-6" style="text-align:right;padding-top:4px;">
+                            <img t-if="o.company_id.logo" t-att-src="image_data_uri(o.company_id.logo)" style="max-height:70px;max-width:90%" alt="Company Logo"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="page">
+                   <table width="100%" style="page-break-inside: avoid !important;margin-top:100px;">
+                        <tr>
+                            <td width="20%" style="font-size:15px;padding-left:50px;vertical-align:middle;">
+                                <b>Date</b>
+                            </td>
+                            <td width="25%" style="text-align:left;font-size:15px;padding:5px;vertical-align:middle;">
+                                :
+                                <t t-if="o.invoice_date">
+                                    <span  t-esc="o.invoice_date" />
+                                </t>
+                                <t t-if="not o.invoice_date">
+                                </t>
+                            </td>
+                            <td width="10%">
+                            </td>
+                            <td width="20%" style="font-size:15px;">
+                                <b>Sales Rep</b>
+                            </td>
+                           <td width="25%" style="text-align:left;font-size:15px;padding:5px;vertical-align:middle;">
+                                :
+                                <t t-if="o.invoice_sales_person_id">
+                                    <span  t-esc="o.invoice_sales_person_id.name" />
+                                </t>
+                                <t t-if="not o.invoice_sales_person_id.name">
+                                </t>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="20%" style="font-size:15px;padding-left:50px;vertical-align:middle;">
+                                <b>Invoice No</b>
+                            </td>
+                            <td width="25%" style="text-align:left;font-size:15px;padding:5px;vertical-align:middle;">
+                                :
+                                <t t-if="o.name">
+                                    <span  t-esc="o.name" />
+                                </t>
+                                <t t-if="not o.name">
+                                </t>
+                            </td>
+                            <td width="10%">
+                            </td>
+                            <td width="20%" style="font-size:15px;">
+                                <b>Delivery Note No</b>
+                            </td>
+                            <td width="25%" style="text-align:left;font-size:15px;padding:5px;vertical-align:middle;">
+                                    :
+                                <t t-if="o.pos_order_ids.picking_ids.name">
+                                    <t t-foreach="o.pos_order_ids.picking_ids" t-as="p">
+                                        <span t-if="o.pos_order_ids.picking_ids.name" t-esc="p.name"/>
+                                    </t>
+                                </t>
+                                <t t-if="not o.pos_order_ids.picking_ids.name">
+                                    <t t-foreach="vals" t-as="v">
+                                        <span t-if="v['delivery_note_num']" t-esc="v['delivery_note_num']"/>
+                                    </t>
+                                </t>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="20%" style="font-size:15px;padding-left:50px;vertical-align:middle;">
+                                <b>Quotation No</b>
+                            </td>
+                            <td width="25%" style="text-align:left;font-size:15px;padding:5px;vertical-align:middle;">
+                                        :
+                                <t t-if="o.pos_order_ids.lines.sale_order_origin_id.name">
+                                    <span t-if="o.pos_order_ids.lines.sale_order_origin_id.name" t-esc="o.pos_order_ids.lines.sale_order_origin_id.name"/>
+                                </t>
+                                <t t-else="not o.pos_order_ids.lines.sale_order_origin_id.name">
+                                    <t t-foreach="vals" t-as="v">
+                                        <span t-if="v['quotation_num']" t-esc="v['quotation_num']"/>
+                                    </t>
+                                </t>
+
+                            </td>
+                            <td width="10%">
+                            </td>
+                            <td width="20%" style="font-size:15px;">
+                                <b>Order No</b>
+                            </td>
+                            <td width="25%" style="text-align:left;font-size:15px;padding:5px;vertical-align:middle;">
+                                        :
+                                <t t-if="o.pos_order_ids.lines.sale_order_origin_id.name">
+                                    <span t-if="o.pos_order_ids.lines.sale_order_origin_id.name" t-esc="o.pos_order_ids.lines.sale_order_origin_id.name"/>
+                                </t>
+                                <t t-else="not pos_order_ids.lines.sale_order_origin_id.name">
+                                    <t t-foreach="vals" t-as="v">
+                                        <span t-if="v['quotation_num']" t-esc="v['quotation_num']"/>
+                                    </t>
+                                </t>
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="20%" style="font-size:15px;padding-left:50px;vertical-align:middle;">
+                                <b>Location </b>
+                            </td>
+                            <td width="25%" style="text-align:left;font-size:15px;padding:5px;vertical-align:middle;">
+                                    :
+                                <t t-if="o.pos_order_ids.picking_ids.location_id.location_id.name">
+                                    <span t-if="o.pos_order_ids.picking_ids.location_id.location_id.name" t-esc="o.pos_order_ids.picking_ids.location_id.location_id.name"/>
+                                </t>
+                                <t t-else="not o.pos_order_ids.picking_ids.location_id.location_id.name">
+                                    <t t-foreach="vals" t-as="v">
+                                        <span t-if="v['location']" t-esc="v['location']"/>
+                                    </t>
+                                </t>
+                            </td>
+                            <td width="10%">
+                            </td>
+                            <td width="20%" style="font-size:15px;">
+                                <b>Reference </b>
+                            </td>
+                            <td width="25%" style="text-align:left;font-size:15px;padding:5px;vertical-align:middle">
+                                    :
+                                <t t-if="o.payment_reference">
+                                    <span t-if="o.payment_reference" t-esc="o.payment_reference"/>
+                                </t>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="20%" style="font-size:15px;padding-left:50px;vertical-align:middle;">
+                                <b>EFG No </b>
+                            </td>
+                            <td width="25%" style="text-align:left;font-size:15px;padding:5px;vertical-align:middle;">
+                                    :
+                                <t t-if="o.efg_no">
+                                    <span t-if="o.efg_no" t-esc="o.efg_no"/>
+                                </t>
+                            </td>
+                        </tr>
+                        </table><br/>
+                        <table>
+                            <tr width="100%">
+                                <td width="15%" style="font-size:15px;padding:5px;">
+                                <div class="card" style="width: 500px">
+                                    <div style="text-align:center;height: 38px;background-color: #17375e;color: white;font-weight: bold;">
+                                           <p style="valign:'middle';padding-top:10px;">Bill To</p>
+                                    </div>
+                                    <div class="card-body" style="height: auto;">
+                                    <t t-foreach="vals" t-as="v">
+                                    <table>
+                                        <tr>
+                                            <td width="40%" style="text-align:left;font-size:15px;font-weight:bold">
+                                              NAME </td>
+                                            <td width="1%" style="padding-right:5px;">: </td>
+                                            <td width="59%" style="word-break:break-word;">
+                                                <t t-if="o.partner_id.name">
+                                                    <t t-esc="o.partner_id.name" />
+                                               </t>
+                                            </td>
+                                        </tr>
+                                        <tr style="word-break:break-word;">
+                                            <td width="40%" style="text-align:left;font-size:15px;font-weight:bold">
+                                              COMPANY NAME </td>
+                                            <td width="1%" style="padding-right:5px;">: </td>
+                                            <td width="59%">
+                                                <t t-if="o.partner_id.name">
+                                                    <t t-esc="o.partner_id.name" />
+                                               </t>
+                                            </td>
+                                        </tr>
+                                         <tr>
+                                            <td width="40%" style="text-align:left;font-size:15px;font-weight:bold;vertical-align:top;">
+                                                STREET ADDRESS</td>
+                                            <td width="1%" style="padding-right:5px;vertical-align:top;">: </td>
+                                            <td width="59%" style="word-break:break-word;">
+                                                <t t-if="o.partner_id.street">
+                                                    <span t-esc="o.partner_id.street"/>,
+                                                </t>
+                                                <t t-if="o.partner_id.street2">
+                                                    <span t-esc="o.partner_id.street2" />,
+                                                </t>
+                                                <t t-if="o.partner_id.city">
+                                                    <span t-esc="o.partner_id.city" />,
+                                                </t>
+                                                <t t-if="o.partner_id.state_id.name">
+                                                    <span t-esc="o.partner_id.state_id.name" /><br/>
+                                                </t>
+                                                <t t-if="o.partner_id.zip">
+                                                    <span t-esc="o.partner_id.zip" />,
+                                                </t>
+                                                <t t-if="o.partner_id.country_id.name">
+                                                    <span t-esc="o.partner_id.country_id.name" />
+                                                </t>
+                                            </td>
+                                        </tr>
+                                       <tr style="padding-bottom:50px;">
+                                            <td width="40%" style="text-align:left;font-size:15px;font-weight:bold;">
+                                                PHONE</td>
+                                            <td width="1%" style="padding-right:5px;">: </td>
+                                            <td width="59%">
+                                                <t t-if="o.partner_id.phone">
+                                                    <span t-esc="o.partner_id.phone" />
+                                                </t>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    </t>
+                                    </div>
+                                </div>
+                                </td>
+                                <td width="70%">
+                                </td>
+                               <td width="15%" style="font-size:15px;padding:5px;">
+                                <div class="card" style="width: 500px">
+                                    <div style="text-align:center;height: 38px;text-align:center;background-color: #17375e;color: white;font-weight: bold;">
+                                        <p style="valign:'middle';padding-top:10px;"> Ship To </p>
+                                    </div>
+                                    <div class="card-body" style="height: auto">
+                                        <table>
+                                            <tr style="word-break:break-word;">
+                                                <td width="40%" style="text-align:left;font-size:15px;font-weight:bold">
+                                                    NAME </td>
+                                                <td width="1%" style="padding-right:5px;">: </td>
+                                                <td width="59%">
+                                                    <t t-if="o.partner_shipping_id.name">
+                                                        <span t-esc="o.partner_shipping_id.name" />
+                                                    </t>
+                                                </td>
+                                            </tr>
+                                            <tr style="word-break:break-word;">
+                                                <td width="40%" style="text-align:left;font-size:15px;font-weight:bold">
+                                                COMPANY NAME </td>
+                                                <td width="1%" style="padding-right:5px;">: </td>
+                                                <td width="59%">
+                                                    <t t-if="o.partner_shipping_id.name">
+                                                        <span t-esc="o.partner_shipping_id.name" />
+                                                    </t>
+                                                </td>
+                                            </tr>
+                                            <tr style="word-break:break-word;">
+                                                <td width="40%" style="text-align:left;font-size:15px;font-weight:bold;vertical-align:top;">
+                                                    STREET ADDRESS</td>
+                                                <td width="1%" style="padding-right:5px;vertical-align:top;">:</td>
+                                                <td width="59%" >
+                                                    <t t-if="o.partner_shipping_id.street">
+                                                        <span  t-esc="o.partner_shipping_id.street" />,
+                                                    </t>
+                                                    <t t-if="o.partner_shipping_id.street2">
+                                                        <span  t-esc="o.partner_shipping_id.street2" />,
+                                                    </t>
+                                                    <t t-if="o.partner_shipping_id.city">
+                                                        <span  t-esc="o.partner_shipping_id.city" />,
+                                                    </t>
+                                                    <t t-if="o.partner_shipping_id.state_id">
+                                                        <span  t-esc="o.partner_shipping_id.state_id.name" /><br/>
+                                                    </t>
+                                                    <t t-if="o.partner_shipping_id.zip">
+                                                        <span  t-esc="o.partner_shipping_id.zip" />,
+                                                    </t>
+                                                    <t t-if="o.partner_shipping_id.country_id.name">
+                                                        <span  t-esc="o.partner_shipping_id.country_id.name" />
+                                                    </t>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td width="40%" style="text-align:left;font-size:15px;font-weight:bold">
+                                                    PHONE</td>
+                                                <td width="1%" style="padding-right:5px;">:</td>
+                                                <td width="59%">
+                                                    <t t-if="o.partner_shipping_id.phone">
+                                                        <span  t-esc="o.partner_shipping_id.phone" />
+                                                    </t>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                                </td>
+                            </tr>
+                        </table>
+                    <br/><br/>
+                        <table width="100%" style="border-collapse: collapse;">
+                            <thead>
+                                <tr>
+                                    <th width="7%" style="padding:5px;vertical-align:middle;background:#17375e;text-align:center;font-size:13px;color:#ffffff;vertical-align:middle;">
+                                        No
+                                    </th>
+                                    <th width="10%" style="padding:5px;vertical-align:middle;background:#17375e;text-align:center;font-size:13px;color:#ffffff;vertical-align:middle;">
+                                       MODEL NO
+                                    </th>
+                                    <th width="40%" style="padding:5px;vertical-align:middle;background:#17375e;text-align:center;font-size:13px;color:#ffffff;vertical-align:middle;">
+                                        DESCRIPTION
+                                    </th>
+                                    <th width="10%" style="padding:5px;vertical-align:middle;background:#17375e;text-align:center;font-size:13px;color:#ffffff;vertical-align:middle;">
+                                        QUANTITY
+                                    </th>
+                                    <th width="10%" style="padding:5px;vertical-align:middle;background:#17375e;text-align:center;font-size:13px;color:#ffffff;vertical-align:middle;">
+                                       UNIT PRICE
+                                    </th>
+                                    <th width="10%" style="padding:5px;vertical-align:middle;background:#17375e;text-align:center;font-size:13px;color:#ffffff;vertical-align:middle;">
+                                        DISC%
+                                    </th>
+                                    <th width="10%" style="padding:5px;vertical-align:middle;background:#17375e;text-align:center;font-size:13px;color:#ffffff;vertical-align:middle;">
+                                      AMOUNT
+                                    </th>
+                                </tr>
+                            </thead>
+                            <t t-set="sl_no" t-value="1" />
+                            <t t-foreach="o.invoice_line_ids" t-as="l">
+                                <t t-if="l.filtered(lambda x:x.is_delivery == False) and l.filtered(
+                                    lambda x: not x.product_id.other_charges and not x.product_id.detailed_type == 'service')">
+                                    <t t-if="not l.display_type">
+                                        <tr width="100%" style="height:50px;">
+                                            <td width="10%" style="background:#dce6f2;text-align:center;font-size:13px;vertical-align:middle;border-bottom:1px solid black;">
+                                                <t t-esc="sl_no" />
+                                                <t t-set="sl_no" t-value="sl_no+1" />
+                                            </td>
+                                            <td width="10%" style="background:#ffffff;text-align:center;font-size:13px;vertical-align:middle;border-bottom:1px solid black;word-break:break-word;">
+                                                <t t-if="l.product_id.default_code">
+                                                    <span t-esc="l.product_id.default_code" />
+                                                </t>
+                                            </td>
+                                            <td width="40%" style="background:#dce6f2;text-align:left;font-size:13px;vertical-align:middle;border-bottom:1px solid black;padding-left:3px;">
+                                            <t t-if="l.product_id.name">
+                                                    <span t-esc="l.product_id.name" />
+                                                </t>
+                                            </td>
+                                            <td width="10%" style="background:#ffffff;text-align:center;font-size:13px;vertical-align:middle;border-bottom:1px solid black;">
+                                                <t t-if="l.quantity">
+                                                    <span t-esc="'{0:,.2f}'.format(l.quantity)" />
+                                                </t>
+                                            </td>
+                                            <td width="10%" style="background:#dce6f2;text-align:center;font-size:13px;vertical-align:middle;border-bottom:1px solid black;padding-left:3px">
+                                            <t t-if="l.price_unit">
+                                                    <span t-esc="'{0:,.2f}'.format(l.price_unit)"/>
+                                                </t>
+                                            </td>
+                                            <td width="10%" style="background:#ffffff;text-align:center;font-size:13px;vertical-align:middle;border-bottom:1px solid black;">
+                                                <span t-esc="'{0:,.2f}'.format(l.discount)" />
+                                            </td>
+                                            <td width="10%" style="background:#ffffff;text-align:center;font-size:13px;vertical-align:middle;border-bottom:1px solid black;">
+                                                <t t-if="l.price_subtotal">
+                                                    <span t-esc="'{0:,.2f}'.format(l.price_subtotal)"/>
+                                                </t>
+                                            </td>
+                                        </tr>
+                                    </t>
+                                </t>
+                            </t>
+                            <t t-set="total_quantity" t-value='0'/>
+                            <tr width="100%">
+                                <td width="60%" colspan="3">
+                                </td>
+                                <td width="10%" style="text-align:center;">
+                                    <t t-if="l.quantity">
+                                        <t t-set="total_quantity" t-value="total_quantity+l.quantity"/>
+                                        <t t-esc="'{0:,.2f}'.format(total_quantity)"/>
+                                    </t>
+                                </td>
+                                <td width="10%">
+                                </td>
+                                <td width="10%" style="padding-top:20px;color:#34495e;font-size:15px;font-weight:bold;text-align:left;border-bottom:1px solid black;">
+                                        Subtotal
+                                </td>
+                                <td width="10%" style="padding-top:20px;color:#34495e;font-size:15px;text-align:right;border-bottom:1px solid black;">
+                                   <t t-esc="'{0:,.2f}'.format(o.amount_untaxed)" />
+                                </td>
+                            </tr>
+                            <tr width="100%">
+                            <td width="80%" colspan="5">
+                            </td>
+                            <t t-foreach="o.invoice_line_ids.tax_ids" t-as="t">
+                                <td width="10%" style="color:#34495e;font-size:15px;font-weight:bold;text-align:left;border-bottom:1px solid black;">
+                                    Vat @
+                                        <t t-if="t.amount">
+                                            <span t-esc="'{0:,.2f}'.format(t.amount)"/>
+                                        </t>
+                                </td>
+                                <td width="10%" style="color:#34495e;font-size:15px;text-align:right;border-bottom:1px solid black;">
+                                    <t t-esc="'{0:,.2f}'.format(o.amount_tax)" />
+                                </td>
+                            </t>
+                            </tr>
+                            <t t-foreach="vals" t-as="v">
+                            <t t-if="v['delivery']">
+                            <tr width="100%">
+                                <td width="80%" colspan="5">
+                                </td>
+                                <td width="10%" style="color:#34495e;font-size:15px;font-weight:bold;text-align:left;border-bottom:1px solid black;">
+                                   Delivery
+                                </td>
+                                <td width="10%" style="color:#34495e;font-size:15px;text-align:right;border-bottom:1px solid black;">
+                                    <t t-esc="v['delivery']" t-options='{"widget": "float", "precision": 2}' />
+                                </td>
+                            </tr>
+                            </t>
+                            </t>
+                            <t t-foreach="vals" t-as="v">
+                            <t t-if="v['other_charges']">
+                                <tr width="100%">
+                                <td width="80%" colspan="5">
+                                </td>
+                                    <td width="10%" style="color:#34495e;font-size:15px;font-weight:bold;text-align:left;border-bottom:1px solid black;">
+                                       Other
+                                    </td>
+                                    <td width="10%" style="color:#34495e;font-size:15px;text-align:right;border-bottom:1px solid black;">
+                                        <t t-esc="v['other_charges']" t-options='{"widget": "float", "precision": 2}'/>
+                                    </td>
+                                </tr>
+                            </t>
+                            </t>
+                            <tr width="100%">
+                            <td width="80%" colspan="5">
+                            </td>
+                            <td width="10%" style="color:#34495e;font-size:15px;font-weight:bold;text-align:left;border-bottom:1px solid black;">
+                                Total
+                            </td>
+                            <td width="10%" style="color:#34495e;font-size:15px;text-align:right;border-bottom:1px solid black;">
+                              <t t-esc="'{0:,.2f}'.format(o.amount_total)" />
+                            </td>
+                            </tr>
+                            <!-- </t> -->
+                        </table>
+                        <t t-foreach="vals" t-as="v">
+                        <div class="row">
+                            <div class="col-6" style="text-align:left;font-size:15px;vertical-align:middle;">
+                                Amount Chargeable(in words):
+                                <b><t t-if="v['num_word']">
+                                    <span t-esc="v['num_word']"/>
+                                </t></b>
+                            </div>
+                        </div>
+                        </t><br/>
+                        <table width="100%">
+                            <tr width="100%">
+                                <td width="65%" style="vertical-align:top;word-break:break-word;">
+                                    <u>Company Bank Details</u><br/>
+                                    <table>
+                                        <tr >
+                                            <td>
+                                                Bank Name
+                                            </td>
+                                            <td >
+                                                :
+
+                                            </td>
+                                            <td>
+                                                <t t-if="o.partner_bank_id.bank_id.name">
+                                                   <b> <span  t-esc="o.partner_bank_id.bank_id.name"/></b>
+                                                </t>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td >
+                                                Account no
+                                            </td>
+                                            <td >
+                                                :
+                                            </td>
+                                            <td >
+                                                <t t-if="o.partner_bank_id.acc_number">
+                                                    <b><span style="word-break:break-word;" t-esc="o.partner_bank_id.acc_number"/></b>
+                                                </t>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Branch &amp;IFS Code
+                                            </td>
+                                            <td >
+                                                :
+                                            </td>
+                                            <td><b>
+                                                <t t-if="o.partner_bank_id.bank_id.street">
+                                                    <span  t-esc="o.partner_bank_id.bank_id.street"/>,
+                                                </t>
+                                                <t t-if="o.partner_bank_id.bank_id.street2">
+                                                    <span  t-esc="o.partner_bank_id.bank_id.street2"/>
+                                                </t>
+                                                /SWIFT CODE:<t t-if="o.partner_bank_id.bank_id.bic">
+                                                    <span t-esc="o.partner_bank_id.bank_id.bic"/>
+                                                </t></b>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                                <td width="35%" style="vertical-align:top;word-break:break-word;">
+                                    <u>Declaration</u><br/>
+                                    <t t-if="o.declaration">
+                                        <span t-esc="o.declaration"/>
+                                    </t>
+                                </td>
+                            </tr>
+                        </table>
+                        <br/>
+                        <table width="100%">
+                                <tr width="100%">
+                                    <td style="width=50%; background:#dce6f2;border:1px solid black;">
+                                        <span style="padding-left:5px;">Customer's Seal and Signature</span><br/>
+                                    <br/><br/><br/><br/><br/><br/><br/>
+                                    </td>
+                                    <td style="width=50%; background:#dce6f2;border:1px solid black;max-height=500%;">
+                                    <span style="padding-left:5px;">For</span> <t t-if="o.company_id.name">
+                                            <span t-esc="o.company_id.name"/>
+                                        </t>
+                                    <br/><br/><br/><br/><br/><br/><br/>
+                                    <div style="text-align:right;padding-right:5px;">Authorised Signatory</div>
+                                    </td>
+                                </tr>
+                            </table>
+                    </div>
+                    <div class="row" style="font-size:13px;">
+                        <div class="col-12">
+                            <t t-if="o.other_terms">
+                                <span t-esc="o.other_terms" style="text-align:center;padding-left:100px;"/>
+                            </t>
+                        </div>
+                    </div>
+                    <div class="footer">
+                        <center>Thank you for your business!!See you soon!!</center>
+                        <div style="text-align:center;">
+                            Page
+                            <span class="page" />
+                            of
+                            <span class="topage" />
+                        </div>
+                    </div>
+                </t>
+
+            </t>
+        </template>
+    </data>
+</odoo>

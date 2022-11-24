@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <report id="quotation_pdf"
+            model="sale.order"
+            string="Sale Quotation"
+            report_type="qweb-pdf"
+            name="bi_quotation.bi_quotation_template"
+            paperformat="bi_quotation.quotation_paperformat"
+    />
+</odoo>
