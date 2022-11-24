@@ -1,0 +1,14 @@
+<odoo>
+    <data>
+        <record id="product_pos_order_from_view_inherit" model="ir.ui.view">
+            <field name="name">product.pos.order.from.view.inherit</field>
+            <field name="model">pos.order</field>
+            <field name="inherit_id" ref="point_of_sale.view_pos_pos_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='employee_id']" position="after">
+                    <field name="custom_salesperson_id" readonly="1"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

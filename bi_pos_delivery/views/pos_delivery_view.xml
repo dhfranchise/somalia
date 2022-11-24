@@ -1,0 +1,45 @@
+<odoo>
+    <record id="view_stock_picking_inherits" model="ir.ui.view">
+        <field name="name">stock.picking.inherits</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook/page[@name='extra']" position="after">
+                <page string="Additional Delivery Information">
+                    <group>
+                        <group>
+                            <field name="driver_name" />
+                            <field name="vehicle_no" />
+                            <field name="mobile_no" />
+                        </group>
+                        <group>
+                            <field name="transporter" />
+                            <field name="route" />
+                        </group>
+                        <group>
+                            <field name="carpentry_name"/>
+                            <field name="carpentry_phone"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="action_picking_tree_all_pos" model="ir.actions.act_window">
+        <field name="name">Delivery Orders</field>
+        <field name="res_model">stock.picking</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">tree,kanban,form,calendar</field>
+        <field name="domain">[('pos_order_id', '!=', False),('state','=', 'done')]</field>
+        <field name="context">{}</field>
+        <field name="search_view_id" ref="stock.view_picking_internal_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No transfer found.
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="pos_delivery_order_menu" name="Delivery Orders" action="action_picking_tree_all_pos" parent="point_of_sale.menu_point_root" sequence="30"/>
+</odoo>

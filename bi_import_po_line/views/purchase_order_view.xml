@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="purchase_order_form_inherit_pol_import" model="ir.ui.view">
+        <field name="name">purchase.order.form.inherit.pol.import</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button name="bi_import_po_line" string="Import Purchase Order Lines" type="object" states="draft,sent" groups="bi_import_po_line.bi_import_po_line_group" class="btn-primary" context="{'bi_po_id':id}" />
+            </xpath>
+        </field>
+    </record>
+</odoo>

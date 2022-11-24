@@ -1,0 +1,21 @@
+<odoo>
+    <record id="view_pos_pos_form_inherit_security" model="ir.ui.view">
+        <field name="name">view.pos.pos.form.inherit.security</field>
+        <field name="model">pos.order</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_pos_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//label[@for='margin']" position="attributes">
+                <attribute name="groups">bi_security.group_show_margin</attribute>
+            </xpath>
+            <xpath expr="//div[hasclass('text-nowrap')]" position="attributes">
+                <attribute name="groups">bi_security.group_show_margin</attribute>
+            </xpath>
+            <xpath expr="//field[@name='lines']//tree//field[@name='margin']" position="attributes">
+                <attribute name="groups">bi_security.group_show_margin</attribute>
+            </xpath>
+            <xpath expr="//field[@name='lines']//tree//field[@name='margin_percent']" position="attributes">
+                <attribute name="groups">bi_security.group_show_margin</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>

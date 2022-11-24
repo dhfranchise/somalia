@@ -1,0 +1,26 @@
+<odoo>
+    <record id="view_account_invoice_report_pivot_extended" model="ir.ui.view">
+        <field name="name">view.account.invoice.report.pivot.extended</field>
+        <field name="model">account.invoice.report</field>
+        <field name="inherit_id" ref="account.view_account_invoice_report_pivot"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='price_subtotal']" position="after">
+                <field name="price_total" type="measure"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_account_invoice_report_search_extended" model="ir.ui.view">
+        <field name="name">view.account.invoice.report.search.extended</field>
+        <field name="model">account.invoice.report</field>
+        <field name="inherit_id" ref="account.view_account_invoice_report_search"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group/filter[@name='category_product']" position="after">
+                <filter string="Group Code" name="group_code_id" context="{'group_by':'group_code_id'}"/>
+                <filter string="Sub Group Code" name="sub_group_code_id" context="{'group_by':'sub_group_code_id'}"/>
+                <filter string="Brand Code" name="brand_code_id" context="{'group_by':'brand_code_id'}"/>
+                <filter string="Invoice Salesperson" name="invoice_sales_person_id" context="{'group_by':'invoice_sales_person_id'}"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

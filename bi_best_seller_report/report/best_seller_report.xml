@@ -1,0 +1,13 @@
+<odoo>
+    <data>
+        <report
+            id="action_view_best_seller_report1"
+            model="best.seller.report"
+            string="Best Seller Report"
+            report_type="xlsx"
+            name="bi_best_seller_report.best_seller_report_xlsx"
+            file="bi_best_seller_report.best_seller_report"
+            print_report_name="Best Seller Report"
+        />
+    </data>
+</odoo>

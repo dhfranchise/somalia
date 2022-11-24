@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+    <record id="view_bi_product_inherits" model="ir.ui.view">
+        <field name="name">bi.product.inherits</field>
+        <field name="model">product.template</field>
+        <field name="priority" eval="100"/>
+        <field name="inherit_id" ref="product.product_template_only_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='categ_id']" position="after">
+                <field name="budget_category_id" />
+                <field name="division_code_id" />
+                <field name="group_code_id" />
+                <field name="sub_group_code_id" />
+                <field name="sub_sub_code_id" />
+                <field name="sub_category_one_code" />
+                <field name="sub_category_two_code" />
+                <field name="sub_category_three_code" />
+                <field name="acp_category_code" />
+                <field name="brand_code_id" />
+                <field name="obc" />
+                <field name="item_classification" />
+                <field name="no_of_boxes_cartons" />
+                <field name="item_status" />
+                <field name="status_type" />
+                <field name="blind_curtain_type" />
+                <field name="po_number" />
+
+            </xpath>
+            <xpath expr="//field[@name='name']" position="after">
+                <group>
+                    <field name="no" />
+                </group>
+            </xpath>
+
+            <xpath expr="//page[@name='general_information']/group[2]" position="replace">
+                <group string="Long Description">
+                    <field name="description" nolabel="1" placeholder="This note is only for internal purposes."/>
+                </group>
+            </xpath>
+
+            <xpath expr="//field[@name='uom_po_id']" position="after">
+                <!-- <group> -->
+                    <field name="model_no" />
+                    <field name="shape_finish" />
+                    <field name="size_code_id" />
+                    <field name="color_code_id" />
+                    <field name="material" />
+                    <field name="width_of_fabric"/>
+                    <field name="height_of_fabric" />
+                    <field name="blind_addition" />
+                    <field name="valance_pelmet_style" />
+                    <field name="estimated_panel_default" />
+                    <field name="cbm" />
+                    <field name="fixing_time" />
+                    <field name="warranty_date" />
+                <!-- </group>	 -->
+            </xpath>
+        </field>
+    </record>
+    </data>
+</odoo>

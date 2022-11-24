@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <!-- PRODUCT PRICELIST -->
+    <record id="import_product_pricelist_wizard" model="ir.ui.view">
+        <field name="name">import.product.pricelist.wizard</field>
+        <field name="model">import.product.pricelist</field>
+        <field name="arch" type="xml">
+            <form string="Import Product Pricelist">
+                <group>
+                    <group>
+                        <field name="import_option" widget="radio" />
+                    </group>
+                    <group>
+                        <field name="file" filename="name" />
+                    </group>
+                </group>
+                <group>
+                    <group>
+                        <field name="import_prod_option" widget='radio'/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="import_product_pricelist" string="Import" type="object" class="oe_highlight"/>
+                    <div style="float: right;">
+                        <a role="button" href="bi_import_pricelist/static/download/product_pricelist.xls" class="btn-primary" style="font-size: 12px; line-height: 1.5; border-radius: 3px; padding: 8px 10px; color: #ffffff;">
+                            <i class="fa fa-download" /> Excel file
+                        </a>
+                        <a role="button" href="bi_import_pricelist/static/download/product_pricelist.csv" class="btn-primary" style="font-size: 12px; line-height: 1.5; border-radius: 3px; padding: 8px 10px; color: #ffffff;">
+                            <i class="fa fa-download" /> CSV file
+                        </a>
+                    </div>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_import_product_pricelist_wizard" model="ir.actions.act_window">
+        <field name="name">Import Product Pricelist</field>
+        <field name="res_model">import.product.pricelist</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <record id="product_pricelist_view_tree_inherit_import_pricelist" model="ir.ui.view">
+        <field name="name">product.pricelist.view.tree.inherit.import.pricelist</field>
+        <field name="model">product.pricelist</field>
+        <field name="inherit_id" ref="product.product_pricelist_view_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//tree" position="attributes">
+                <attribute name="js_class">import_pricelist_tree</attribute>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

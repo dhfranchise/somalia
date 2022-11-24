@@ -1,0 +1,22 @@
+.paymentmain {
+  display: flex;
+  flex-flow: row;
+  flex-wrap: wrap;
+}
+
+.payment-reference-div {
+  margin-left: 9px;
+  margin-top: -25px;
+}
+
+.paymentline.selected {
+  display: flex;
+  flex-flow: row;
+  flex-wrap: wrap;
+}
+
+.payment-reference-selected {
+  flex-basis: 82%;
+  margin-top: -26px;
+  margin-left: 10px;
+}

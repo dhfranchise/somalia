@@ -1,0 +1,17 @@
+<odoo>
+    <record id="pos_config_view_form_inherit_invoice_generic" model="ir.ui.view">
+        <field name="name">pos.config.view.form.inherit.invoice.generic</field>
+        <field name="model">pos.config</field>
+        <field name="inherit_id" ref="point_of_sale.pos_config_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@id='title']" position="after">
+                <div class="oe_title" id="email">
+                    <label for="email"/>
+                    <h3>
+                        <field name="email"/>
+                    </h3>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

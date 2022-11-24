@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <report id="delivery_pdf"
+            model="stock.picking"
+            string="Delivery Note"
+            report_type="qweb-pdf"
+            name="bi_delivery_note_printout.bi_delivery_note_template"
+            paperformat="bi_delivery_note_printout.po_paperformat"
+    />
+</odoo>

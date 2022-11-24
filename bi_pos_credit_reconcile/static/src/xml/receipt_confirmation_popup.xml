@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="pos_orders_reprint_template" inherit_id="point_of_sale.template" xml:space="preserve">
+    <t t-name="ReceiptConfirmationPopup" owl="1">
+        <div role="dialog" class="modal-dialog">
+            <Draggable>
+                <div class="popup" style="min-width: 50%;">
+                    <header class="title drag-handle">
+                        Receipt/Credit Note Details
+                    </header>
+                    <main class="body traceback" style="font-family: 'Lato-Reg';">
+                        <table class='payorder-list' style='width:100%;    text-align: center;line-height: 30px;'>
+                            <thead>
+                                <tr class="order-table-head">
+                                    <th>Type</th>
+                                    <th>Unique Number</th>
+                                </tr>
+                            </thead>
+                            <tbody class='payorder-list-contents'>
+                                <tr class="order-table">
+                                    <td style="display: none;">Advance Receipt Details (Use commas to seperate)</td>
+                                    <td class="advance-receipt-details" style="display: none;">
+                                        <input type="text" name="advancereceiptnumber" style="margin: 5px;" t-att-id='props.order' class="input-field">
+                                        </input>
+                                    </td>
+                                </tr>
+
+                                <tr class="order-table">
+                                    <td>Credit Note Details (Use commas to seperate)</td>
+                                    <td class="credit-note-details">
+                                        <input type="text" name="creditnotenumber" style="margin: 5px;" t-att-id='props.order' class="input-field">
+                                        </input>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </main>
+                    <footer class="footer">
+                        <div class="button cancel odoo-theme-button" t-on-click="cancel">
+                            Close
+                        </div>
+
+                        <div class="button confirm odoo-theme-button" t-on-click="do_calculate_tender_amount">
+                            Calculate
+                        </div>
+                    </footer>
+                </div>
+            </Draggable>
+        </div>
+    </t>
+</templates>

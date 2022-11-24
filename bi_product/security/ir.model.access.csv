@@ -1,0 +1,12 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_bi_budget_category,bi.budget.category,model_bi_budget_category,base.group_user,1,1,1,1
+access_bi_division_code,bi.division.code,model_bi_division_code,base.group_user,1,1,1,1
+access_bi_group_code,bi.group.code,model_bi_group_code,base.group_user,1,1,1,1
+access_bi_sub_group_code,bi.sub.group.code,model_bi_sub_group_code,base.group_user,1,1,1,1
+access_bi_sub_category_one_code,bi.sub.category.one.code,model_bi_sub_category_one_code,base.group_user,1,1,1,1
+access_bi_sub_category_two_code,bi.sub.category.two.code,model_bi_sub_category_two_code,base.group_user,1,1,1,1
+access_bi_sub_category_three_code,bi.sub.category.three.code,model_bi_sub_category_three_code,base.group_user,1,1,1,1
+access_bi_size_code,bi.size.code,model_bi_size_code,base.group_user,1,1,1,1
+access_bi_color_code,bi.color.code,model_bi_color_code,base.group_user,1,1,1,1
+access_bi_brand_code,bi.brand.code,model_bi_brand_code,base.group_user,1,1,1,1
+access_bi_sub_sub_group_code,bi.sub.sub.group.code,model_bi_sub_sub_group_code,base.group_user,1,1,1,1

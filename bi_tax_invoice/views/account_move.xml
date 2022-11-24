@@ -1,0 +1,22 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="account_move">
+            <field name="name">Account Move</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//sheet/group/group[@id='header_right_group']/field[@name='invoice_date']" position="after">
+                    <field name="invoice_sales_person_id"/>
+                </xpath>
+                <xpath expr="//notebook/page/field/tree/field[@name='price_unit']" position="after">
+                    <field name="is_delivery"/>
+                    <field name="is_other_charges"/>
+                </xpath>
+                <xpath expr="//notebook/page[@name='other_info']/group/group[2]/field[@name='fiscal_position_id']" position="after">
+                    <field name="declaration"/>
+                    <field name="other_terms"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

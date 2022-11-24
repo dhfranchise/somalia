@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="PaymentScreen" t-inherit="point_of_sale.PaymentScreen" t-inherit-mode="extension" owl="1">
+        <xpath expr="//div[hasclass('button') and hasclass('js_invoice')]" position="after">
+            <div class="button advance" t-att-class="{ highlight: env.pos.get_order().is_to_use_advance_amount() }" t-on-click.stop="trigger('click-tenderAmountDetails',props.order)">
+                <span class="js_customer_credit">
+                    <t t-if="env.pos.get_order().advance_credit_total">
+                            Credit Note Amount :
+                        <t t-esc="(env.pos.get_order().advance_credit_total)" />
+                    </t>
+                    <t t-if="!env.pos.get_order().advance_credit_total">
+                            Credit Note No:
+                    </t>
+                </span>
+            </div>
+        </xpath>
+    </t>
+
+</templates>

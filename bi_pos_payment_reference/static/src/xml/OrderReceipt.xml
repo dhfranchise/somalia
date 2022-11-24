@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="OrderReceiptExt" t-inherit="point_of_sale.OrderReceipt" t-inherit-mode="extension" owl="1">
+        <xpath expr="//t[@t-foreach='receipt.paymentlines']" position="before">
+            <div>
+                Payment Reference
+                <span t-esc="payment_references" class="pos-receipt-right-align"/>
+            </div>
+        </xpath>
+    </t>
+</templates>

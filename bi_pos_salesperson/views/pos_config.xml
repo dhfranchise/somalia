@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="pos_config_view_form_inherit_pos_salesperson" model="ir.ui.view">
+        <field name="name">pos.config.form.inherit.pos.salesperson</field>
+        <field name="model">pos.config</field>
+        <field name="inherit_id" ref="point_of_sale.pos_config_view_form" />
+        <field name="priority" eval="100"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//div[hasclass('price_control')]" position="after">
+                <div class="col-12 col-lg-6 o_setting_box salesperson_control" title="Enable Salesperson in POS">
+                    <div class="o_setting_left_pane">
+                        <field name="is_salesperson_enabled"/>
+                    </div>
+                    <div class="o_setting_right_pane">
+                        <label for="is_salesperson_enabled" string="Enable Salesperson"/>
+                        <div class="text-muted">
+                            Enable Salesperson in POS
+                        </div>
+                        <field name="salesperson_ids" widget="many2many_tags" attrs="{'invisible': [('is_salesperson_enabled','=', False)]}"/>
+                    </div>
+                </div>
+            </xpath>
+
+        </field>
+    </record>
+</odoo>
